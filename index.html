@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación: Infarto Agudo de Miocardio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Evita el scroll vertical */
+        }
+
+        /* Contenedor principal de diapositivas */
+        #slide-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory; /* El "efecto PowerPoint" */
+            -webkit-overflow-scrolling: touch; /* Para iOS */
+        }
+
+        /* Estilo base de cada diapositiva */
+        .slide {
+            flex: 0 0 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            padding: 3rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background-color: #0a192f; /* Azul oscuro de fondo */
+            color: #e6f1ff; /* Texto claro */
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Títulos */
+        .slide-title {
+            font-size: clamp(2rem, 4vw, 3rem); /* Fuente responsiva */
+            font-weight: 700;
+            color: #64ffda; /* Verde menta/teal */
+            border-bottom: 3px solid #64ffda;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Título de la diapositiva principal */
+        .main-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #e6f1ff;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contenido de texto */
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        li::before {
+            content: '•';
+            color: #64ffda; /* Viñeta de color */
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1.5em;
+            position: absolute;
+            left: 1rem;
+            font-size: 1.5em; /* Tamaño de la viñeta */
+            line-height: 1;
+        }
+        
+        strong {
+            color: #64ffda;
+            font-weight: 600;
+        }
+
+        p {
+             font-size: clamp(1rem, 1.8vw, 1.3rem);
+             line-height: 1.6;
+        }
+
+        /* Contenedor de contenido de la diapositiva */
+        .slide-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+        }
+        .slide-content.full-width {
+            grid-template-columns: 1fr;
+        }
+        .slide-content > div { /* Columna de texto */
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+
+        /* Placeholder de imagen */
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            max-height: 60vh;
+            min-height: 300px;
+            background-color: #1e3a5f; /* Fondo del placeholder */
+            border: 2px dashed #64ffda;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.3s ease;
+        }
+        
+        .image-placeholder p.suggestion {
+            font-style: italic;
+            color: #e6f1ff;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .image-placeholder input[type="text"] {
+            width: 80%;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #64ffda;
+            background-color: #e6f1ff;
+            color: #0a192f;
+            font-size: 0.9rem;
+        }
+        .image-placeholder input[type="text"]::placeholder {
+            color: #555;
+        }
+        .image-placeholder .input-group {
+            display: flex;
+            width: 80%;
+        }
+        .image-placeholder .input-group input {
+            flex-grow: 1;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: 0;
+        }
+        .image-placeholder .input-group button {
+            padding: 0.5rem 1rem;
+            background-color: #64ffda;
+            color: #0a192f;
+            border: none;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+
+        /* Pie de página (Bibliografía y contador) */
+        footer {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 4rem;
+            right: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #a8b2d1; /* Texto de pie de página más suave */
+        }
+        #slide-counter {
+            font-weight: 600;
+        }
+        .bibliography {
+            font-style: italic;
+        }
+
+        /* Para la diapositiva de título */
+        .title-slide {
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #0a192f 0%, #1e3a5f 100%);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="slide-container">
+        
+        <!-- Diapositiva 1: Título -->
+        <section class="slide title-slide">
+            <div>
+                <h1 class="main-title">Infarto Agudo de Miocardio</h1>
+                <p class="subtitle">Una Revisión Clínica Basada en Evidencia</p>
+                <div class="mt-12">
+                    <p class="text-2xl text-gray-200">Brandon [Tu Nombre Completo Aquí]</p>
+                    <p class="text-xl text-gray-400">Médico Pasante del Servicio Social</p>
+                    <p class="text-xl text-gray-400">Institución: ISSSTE</p>
+                    <p class="text-xl text-gray-400 mt-4">Miércoles 29</p>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography"></span>
+                <span id="slide-counter">1 / 30</span>
+            </footer>
+        </section>
+
+
+        <!-- Diapositiva 3: Definición y Fisiopatología -->
+        <section class="slide">
+            <h2 class="slide-title">Definición y Fisiopatología</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-xl mb-4"><strong>4ta Definición Universal de IAM:</strong></p>
+                    <p>Lesión miocárdica aguda (dinámica de troponinas) + Evidencia de isquemia miocárdica aguda (al menos uno):</p>
+                    <ul>
+                        <li>Síntomas de isquemia.</li>
+                        <li>Nuevos cambios EKG (ST-T, BRI).</li>
+                        <li>Desarrollo de ondas Q patológicas.</li>
+                        <li>Evidencia por imagen de nueva pérdida de miocardio viable / motilidad parietal.</li>
+                        <li>Trombo intracoronario (angiografía o autopsia).</li>
+                    </ul>
+                    <p class="text-xl mt-6"><strong>Fisiopatología (IAM Tipo 1):</strong></p>
+                    <p>La causa más común. Es una cascada de eventos:</p>
+                    <ul>
+                        <li>Rotura o erosión de una placa aterosclerótica vulnerable.</li>
+                        <li>Exposición del núcleo lipídico (altamente trombogénico).</li>
+                        <li>Adhesión plaquetaria, activación y agregación.</li>
+                        <li>Activación de la cascada de coagulación.</li>
+                        <li>Formación de un <strong>trombo oclusivo</strong> que interrumpe el flujo sanguíneo.</li>
+                    </ul>
+                </div>
+                <div class="image-placeholder" id="img-placa">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama que muestre la rotura de una placa aterosclerótica y la formación de un trombo oclusivo en una arteria coronaria.</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-placa')">
+                        <button onclick="applyImage('img-placa')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">Thygesen K, et al. J Am Coll Cardiol. 2018;72(18):2231-2264.</span>
+                <span id="slide-counter">3 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 4: Clasificación Universal (Tipos 1-5) -->
+        <section class="slide">
+            <h2 class="slide-title">Clasificación Etiológica del IAM</h2>
+            <div class="slide-content">
+                <div>
+                    <ul>
+                        <li><strong>Tipo 1:</strong> IAM espontáneo por evento aterotrombótico (rotura de placa). <strong>Es el foco principal.</strong></li>
+                        <li><strong>Tipo 2:</strong> Desequilibrio entre aporte y demanda de $O_2$ (espasmo, disección, anemia, arritmia, HTA/hipotensión). No por rotura de placa aguda.</li>
+                        <li><strong>Tipo 3:</strong> Muerte cardíaca súbita, con síntomas de isquemia, antes de poder tomar biomarcadores.</li>
+                        <li><strong>Tipo 4a:</strong> IAM asociado a Intervención Coronaria Percutánea (ICP) (cTn >5x LSN).</li>
+                        <li><strong>Tipo 4b:</strong> IAM por trombosis de stent.</li>
+                        <li><strong>Tipo 5:</strong> IAM asociado a Cirugía de Revascularización Coronaria (CABG) (cTn >10x LSN).</li>
+                    </ul>
+                    <p class="mt-6 text-xl"><strong>Relevancia Clínica: Tipo 1 vs. Tipo 2</strong></p>
+                    <p>Diferenciarlos es crucial. El <strong>IAM Tipo 1</strong> requiere terapia antitrombótica agresiva y revascularización. El <strong>IAM Tipo 2</strong> requiere tratar la causa subyacente (ej. corregir anemia, controlar arritmia).</p>
+                </div>
+                <div class="image-placeholder" id="img-tipos">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama simple comparando visualmente el IAM Tipo 1 (trombo en placa) vs. el IAM Tipo 2 (ej. arteria con espasmo o estenosis fija con aumento de demanda).</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-tipos')">
+                        <button onclick="applyImage('img-tipos')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">Thygesen K, et al. J Am Coll Cardiol. 2018;72(18):2231-2264.</span>
+                <span id="slide-counter">4 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 5: Abordaje Diagnóstico Inicial -->
+        <section class="slide">
+            <h2 class="slide-title">Abordaje Diagnóstico Inicial</h2>
+            <div class="slide-content full-width">
+                <div>
+                    <p class="text-2xl text-center mb-8">El diagnóstico se basa en la integración de tres pilares fundamentales:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <div class="bg-blue-900 p-6 rounded-lg shadow-lg">
+                            <h3 class="text-2xl font-semibold mb-3 text-white">1. Clínica</h3>
+                            <p class="text-lg text-gray-300">Historia clínica y síntomas sugestivos de isquemia.</p>
+                        </div>
+                        <div class="bg-blue-900 p-6 rounded-lg shadow-lg">
+                            <h3 class="text-2xl font-semibold mb-3 text-white">2. EKG (en < 10 min)</h3>
+                            <p class="text-lg text-gray-300">La herramienta de triaje clave. Define la estrategia de reperfusión inmediata.</p>
+                        </div>
+                        <div class="bg-blue-900 p-6 rounded-lg shadow-lg">
+                            <h3 class="text-2xl font-semibold mb-3 text-white">3. Biomarcadores</h3>
+                            <p class="text-lg text-gray-300">Confirman la necrosis miocárdica (hs-cTn). El diagnóstico de IAM se basa en su *dinámica*.</p>
+                        </div>
+                    </div>
+                    <p class="text-4xl text-center font-bold mt-12 text-red-400 animate-pulse">"Tiempo es Músculo"</p>
+                    <p class="text-xl text-center text-gray-300">Cada minuto de retraso en la reperfusión aumenta la mortalidad.</p>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">5 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 6: Presentación Clínica -->
+        <section class="slide">
+            <h2 class="slide-title">Presentación Clínica: Síntomas</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-xl mb-4"><strong>Síntomas Clásicos:</strong></p>
+                    <ul>
+                        <li>Dolor torácico retroesternal, opresivo, "pesadez".</li>
+                        <li>Duración > 20 minutos, no se alivia con reposo.</li>
+                        <li>Irradiación: Brazo izquierdo, ambos brazos, mandíbula, cuello, espalda, epigastrio.</li>
+                        <li>Síntomas neurovegetativos: Diaforesis fría, náuseas, vómito, síncope.</li>
+                        <li>Disnea, sensación de muerte inminente.</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-xl mb-4"><strong>Presentaciones Atípicas:</strong></p>
+                    <p>Frecuentes en mujeres, ancianos (>75 años) y pacientes con Diabetes Mellitus.</p>
+                     <ul>
+                        <li><strong>Disnea</strong> como síntoma principal.</li>
+                        <li>Dolor atípico: Epigastrio ("indigestión"), mandíbula, espalda.</li>
+                        <li>Fatiga inexplicable.</li>
+                        <li>Síncope, estado confusional agudo (en ancianos).</li>
+                    </ul>
+                    <p class="mt-4 text-yellow-300">Un alto índice de sospecha es clave en estas poblaciones.</p>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">6 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 7: El EKG: La Decisión Crítica -->
+        <section class="slide">
+            <h2 class="slide-title">El EKG: La Decisión Crítica (< 10 min)</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-xl">El EKG de 12 derivaciones es la herramienta de triaje fundamental. Clasifica al paciente en dos vías de manejo inmediato:</p>
+                    <br>
+                    <p class="text-2xl font-bold">1. IAMCEST (STEMI)</p>
+                    <p class="text-lg">(Infarto con Elevación del Segmento ST)</p>
+                    <ul>
+                        <li>Hallazgo: <strong>Elevación persistente del ST</strong> (o BRI nuevo).</li>
+                        <li>Fisiopatología: <strong>Oclusión coronaria total</strong> (trombo).</li>
+                        <li>Manejo: <strong>¡Reperfusión Urgente!</strong> (ICP Primaria o Fibrinólisis).</li>
+                    </ul>
+                    <br>
+                    <p class="text-2xl font-bold">2. SCASEST (NSTE-ACS)</p>
+                    <p class="text-lg">(Síndrome Coronario Agudo Sin Elevación del ST)</p>
+                     <ul>
+                        <li>Hallazgo: <strong>Depresión del ST</strong>, inversión de T, o EKG normal.</li>
+                        <li>Fisiopatología: <strong>Oclusión subtotal</strong>, trombo no oclusivo, oclusión transitoria.</li>
+                        <li>Manejo: <strong>Estratificación de riesgo</strong> (GRACE) para definir urgencia de angiografía.</li>
+                    </ul>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="image-placeholder h-1/2" id="img-stemi">
+                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un trazo de EKG claro que muestre una elevación del segmento ST (ej. en V2-V4, "lomo de delfín").</p>
+                        <div class="input-group">
+                            <input type="text" placeholder="URL de imagen STEMI" onkeydown="handleImageInput(event, 'img-stemi')">
+                            <button onclick="applyImage('img-stemi')">OK</button>
+                        </div>
+                    </div>
+                    <div class="image-placeholder h-1/2" id="img-nstemi">
+                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un trazo de EKG que muestre una depresión del segmento ST o una inversión de la onda T.</p>
+                        <div class="input-group">
+                            <input type="text" placeholder="URL de imagen SCASEST" onkeydown="handleImageInput(event, 'img-nstemi')">
+                            <button onclick="applyImage('img-nstemi')">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">7 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 8: Criterios EKG de IAMCEST -->
+        <section class="slide">
+            <h2 class="slide-title">Diagnóstico EKG: Criterios de IAMCEST</h2>
+            <div class="slide-content full-width">
+                <div>
+                    <p class="text-xl">Nueva elevación del segmento ST en el <strong>Punto J</strong>, en al menos <strong>dos derivaciones contiguas</strong>:</p>
+                    <ul>
+                        <li><strong>$\geq 1$ mm (0.1 mV)</strong> en todas las derivaciones (ej. cara inferior, lateral).</li>
+                        <li class="my-4">...Excepto en <strong>V2-V3</strong>, donde los umbrales dependen de sexo y edad:
+                            <ul>
+                                <li><strong>$\geq 2.5$ mm</strong> en hombres < 40 años.</li>
+                                <li><strong>$\geq 2$ mm</strong> en hombres $\geq 40$ años.</li>
+                                <li><strong>$\geq 1.5$ mm</strong> en mujeres (cualquier edad).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="text-2xl font-bold mt-8">Equivalentes de IAMCEST:</p>
+                    <p class="text-xl">Se manejan con la misma urgencia de reperfusión:</p>
+                    <ul>
+                        <li><strong>Bloqueo de Rama Izquierda (BRI)</strong> de nueva aparición (o presuntamente nuevo) en contexto de síntomas isquémicos.</li>
+                        <li>Ver también criterios de <strong>Sgarbossa</strong> si hay BRI previo.</li>
+                    </ul>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">Thygesen K, et al. J Am Coll Cardiol. 2018;72(18):2231-2264.</span>
+                <span id="slide-counter">8 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 9: Localización del Infarto (Parte 1) -->
+        <section class="slide">
+            <h2 class="slide-title">Diagnóstico EKG: Localización del Infarto (1/2)</h2>
+            <div class="slide-content">
+                <div class="text-lg">
+                    <table class="w-full text-left">
+                        <thead class="border-b-2 border-teal-400">
+                            <tr>
+                                <th class="p-2">Localización</th>
+                                <th class="p-2">Derivaciones (Elevación ST)</th>
+                                <th class="p-2">Arteria Culpable (Típica)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-700">
+                            <tr class="bg-blue-900">
+                                <td class="p-3 font-bold">Anterior</td>
+                                <td class="p-3">V1-V4</td>
+                                <td class="p-3">Descendente Anterior (ADA)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">Anteroseptal</td>
+                                <td class="p-3">V1-V2</td>
+                                <td class="p-3">ADA (Ramas septales)</td>
+                            </tr>
+                            <tr class="bg-blue-900">
+                                <td class="p-3 font-bold">Anterolateral</td>
+                                <td class="p-3">V4-V6, I, aVL</td>
+                                <td class="p-3">ADA (Ramas diagonales) o Circunfleja (ACx)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">Inferior</td>
+                                <td class="p-3"><strong>II, III, aVF</strong></td>
+                                <td class="p-3">Coronaria Derecha (ACD) (80%) o ACx (20%)</td>
+                            </tr>
+                             <tr class="bg-blue-900">
+                                <td class="p-3 font-bold">Lateral Alto</td>
+                                <td class="p-3">I, aVL</td>
+                                <td class="p-3">Circunfleja (ACx) (Rama obtusa marginal)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="mt-4 text-yellow-300"><strong>Cambios Recíprocos (en espejo):</strong> La depresión del ST en derivaciones opuestas (ej. depresión en I, aVL en un infarto inferior) confirma el diagnóstico y sugiere un evento más extenso.</p>
+                </div>
+                <div class="image-placeholder" id="img-ekg-leads">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama del corazón con las arterias coronarias (ADA, ACx, ACD) y otro diagrama mostrando la agrupación de las 12 derivaciones del EKG por pared (Anterior, Inferior, Lateral).</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-ekg-leads')">
+                        <button onclick="applyImage('img-ekg-leads')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">9 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 10: Localización del Infarto (Parte 2) -->
+        <section class="slide">
+            <h2 class="slide-title">Diagnóstico EKG: Localización del Infarto (2/2)</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-xl mb-4"><strong>Infartos "Ocultos":</strong> Requieren derivaciones adicionales.</p>
+                    <br>
+                    <p class="text-2xl font-bold">Infarto Posterior</p>
+                    <ul>
+                        <li>Sospechar con: <strong>Depresión del ST en V1-V3</strong> (imagen en espejo).</li>
+                        <li>Diagnóstico: Elevación del ST $\geq 0.5$ mm en derivaciones posteriores <strong>V7-V9</strong>.</li>
+                        <li>Arteria: Generalmente ACx o ACD.</li>
+                    </ul>
+                    <br>
+                    <p class="text-2xl font-bold">Infarto de Ventrículo Derecho (VD)</p>
+                     <ul>
+                        <li>Sospechar en: <strong>TODO infarto de cara inferior (II, III, aVF)</strong>.</li>
+                        <li>Diagnóstico: Elevación del ST $\geq 1$ mm en derivaciones derechas (<strong>V3R, V4R</strong>).</li>
+                        <li>Arteria: Coronaria Derecha (ACD) proximal.</li>
+                        <li><strong>Implicación Clínica:</strong> Pacientes <strong>dependientes de precarga</strong>. ¡Contraindicados los nitratos y morfina por riesgo de hipotensión severa!</li>
+                    </ul>
+                </div>
+                <div class="image-placeholder" id="img-ekg-extra">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama que muestre la colocación de las derivaciones V7-V9 en la espalda y V3R-V4R en el hemitórax derecho.</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-ekg-extra')">
+                        <button onclick="applyImage('img-ekg-extra')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">10 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 11: Evolución EKG del Infarto -->
+        <section class="slide">
+            <h2 class="slide-title">Diagnóstico EKG: Evolución Temporal del IAMCEST</h2>
+            <div class="slide-content">
+                <div>
+                    <ol class="list-decimal pl-6 text-xl space-y-4">
+                        <li><strong>Fase Hiperaguda (Minutos):</strong> Ondas T altas, picudas y simétricas ("T hiperagudas"). Reflejan isquemia transmural.</li>
+                        <li><strong>Fase Aguda (Minutos a Horas):</strong> Elevación del segmento ST (cóncava, luego convexa). Aparecen cambios recíprocos.</li>
+                        <li><strong>Fase en Evolución (Horas a Días):</strong> La elevación del ST comienza a disminuir. Las ondas T se invierten (isquemia subepicárdica). Aparecen ondas Q patológicas.</li>
+                        <li><strong>Fase Crónica (Semanas a Meses):</strong> El ST se normaliza. La inversión de T puede persistir o normalizarse. Las ondas Q patológicas (necrosis) suelen ser permanentes.</li>
+                    </ol>
+                </div>
+                <div class="image-placeholder" id="img-ekg-evol">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Una serie de 4 trazos de EKG que muestren la secuencia evolutiva (Normal -> T Hiperaguda -> Elevación ST -> Onda Q / T Invertida).</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-ekg-evol')">
+                        <button onclick="applyImage('img-ekg-evol')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">Hampton, J. R. (2013). The ECG in Practice. Elsevier.</span>
+                <span id="slide-counter">11 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 12: Equivalentes EKG de Alto Riesgo -->
+        <section class="slide">
+            <h2 class="slide-title">Diagnóstico EKG: Equivalentes de Alto Riesgo (Oclusión)</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-xl">Patrones que <strong>NO</strong> cumplen criterios de STEMI, pero indican oclusión coronaria aguda y requieren ICP urgente:</p>
+                    <br>
+                    <p class="text-2xl font-bold">Ondas T de De Winter</p>
+                     <ul>
+                        <li>Depresión ascendente del ST en V1-V6.</li>
+                        <li>Seguida de Ondas T altas, picudas y simétricas.</li>
+                        <li>Indica: <strong>Oclusión proximal de la ADA</strong>.</li>
+                    </ul>
+                    <br>
+                    <p class="text-2xl font-bold">Síndrome de Wellens (Tipo A/B)</p>
+                     <ul>
+                        <li>Ondas T bifásicas o profundamente invertidas y simétricas en V2-V3.</li>
+                        <li>Ocurre durante el período <strong>sin dolor</strong>.</li>
+                        <li>Indica: <strong>Estenosis crítica de la ADA proximal</strong> (alto riesgo de IAM anterior masivo inminente).</li>
+                    </ul>
+                </div>
+                 <div class="flex flex-col gap-4">
+                    <div class="image-placeholder h-1/2" id="img-dewinter">
+                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un trazo de EKG mostrando el patrón de De Winter en las precordiales.</p>
+                        <div class="input-group">
+                            <input type="text" placeholder="URL de imagen De Winter" onkeydown="handleImageInput(event, 'img-dewinter')">
+                            <button onclick="applyImage('img-dewinter')">OK</button>
+                        </div>
+                    </div>
+                    <div class="image-placeholder h-1/2" id="img-wellens">
+                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un trazo de EKG mostrando el patrón de Wellens (Tipo A o B) en V2-V3.</p>
+                        <div class="input-group">
+                            <input type="text" placeholder="URL de imagen Wellens" onkeydown="handleImageInput(event, 'img-wellens')">
+                            <button onclick="applyImage('img-wellens')">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">de Winter RJ, et al. N Engl J Med. 2008;359(19):2071-3. | de Zwaan C, et al. Am Heart J. 1982;103(4 Pt 2):730-6.</span>
+                <span id="slide-counter">12 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 13: Biomarcadores Cardíacos -->
+        <section class="slide">
+            <h2 class="slide-title">Diagnóstico: Biomarcadores Cardíacos</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-2xl font-bold">Troponina de Alta Sensibilidad (hs-cTn)</p>
+                    <ul>
+                        <li><strong>Es el Gold Standard.</strong></li>
+                        <li>Alta especificidad por el miocardio y altísima sensibilidad.</li>
+                        <li>Permite detectar necrosis miocárdica mínima.</li>
+                        <li><strong>IMPORTANTE:</strong> Una elevación de hs-cTn por sí sola = <strong>Lesión Miocárdica</strong>.</li>
+                        <li>Para diagnosticar <strong>Infarto (IAM)</strong>, se requiere una <strong>DINÁMICA</strong> (aumento y/o caída significativos) en un contexto de isquemia.</li>
+                    </ul>
+                    <br>
+                    <p class="text-2xl font-bold">El Concepto de "Dinámica"</p>
+                     <ul>
+                        <li>Diferencia una lesión <strong>aguda</strong> (IAM) de una <strong>crónica</strong> (ej. ERC, IC crónica, miocarditis).</li>
+                        <li>En la lesión crónica, los valores están elevados pero son estables.</li>
+                        <li>En el IAM, los valores cambian significativamente en mediciones seriadas.</li>
+                    </ul>
+                </div>
+                <div class="image-placeholder" id="img-troponina">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un gráfico que muestre la curva de elevación y caída de la hs-cTn en un IAM, comparada con una línea plana elevada (lesión crónica).</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-troponina')">
+                        <button onclick="applyImage('img-troponina')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">13 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 14: Cinética de hs-cTn y Algoritmos -->
+        <section class="slide">
+            <h2 class="slide-title">Diagnóstico: Cinética de Biomarcadores</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-2xl font-bold">Cinética de hs-cTn</p>
+                    <ul>
+                        <li><strong>Elevación inicial:</strong> 1-3 horas post-inicio de síntomas.</li>
+                        <li><strong>Pico máximo:</strong> 12-24 horas.</li>
+                        <li><strong>Permanencia:</strong> Siguen elevadas por 7-14 días.</li>
+                    </ul>
+                    <br>
+                    <p class="text-2xl font-bold">Algoritmos Rápidos (ESC 0/1h y 0/2h)</p>
+                     <ul>
+                        <li>Permiten un triaje rápido y seguro en SCASEST.</li>
+                        <li>Se basan en el valor basal (0h) y el cambio absoluto (delta) a 1 o 2 horas.</li>
+                        <li><strong>Rule-Out (Descarte):</strong> Valores basales muy bajos + delta mínimo. Permite alta segura.</li>
+                        <li><strong>Rule-In (Confirmación):</strong> Valores basales muy altos O un delta significativo. Paciente ingresa como IAMSEST.</li>
+                        <li><strong>Zona de Observación:</strong> Valores intermedios, requieren una tercera muestra (ej. 3h).</li>
+                    </ul>
+                </div>
+                <div class="image-placeholder" id="img-cinetica">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama de flujo que muestre el algoritmo de 0/1 hora de la ESC, con las cajas de "Rule-Out", "Observar" y "Rule-In" y los valores de corte (estos varían según el ensayo específico).</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-cinetica')">
+                        <button onclick="applyImage('img-cinetica')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">ESC Guidelines for ACS (2023). Eur Heart J. 2023;44(38):3720-3826.</span>
+                <span id="slide-counter">14 / 30</span>
+            </footer>
+        </section>
+        
+        <!-- Diapositiva 15: CK-MB y Otros Estudios -->
+        <section class="slide">
+            <h2 class="slide-title">Diagnóstico: CK-MB y Otros Estudios</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-2xl font-bold">CK-MB: ¿Cuándo sigue siendo útil?</p>
+                     <ul>
+                        <li>Menos sensible y específica que la hs-cTn.</li>
+                        <li>Cinética: Se eleva en 4-6h, pico 12-24h, <strong>se normaliza en 48-72h</strong>.</li>
+                        <li><strong>Utilidad Principal:</strong> Detección de <strong>Re-Infarto</strong>.</li>
+                        <li>Si un paciente tiene un nuevo episodio de dolor torácico 3 días después de un IAM, la hs-cTn seguirá elevada por el primer evento. Un nuevo pico de CK-MB (que ya se había normalizado) es altamente sugestivo de un nuevo evento isquémico.</li>
+                    </ul>
+                    <br>
+                    <p class="text-2xl font-bold">Otros Laboratorios Iniciales</p>
+                     <ul>
+                        <li><strong>BH Completa:</strong> Descartar anemia como causa de Tipo 2, trombocitopenia (afecta DAPT).</li>
+                        <li><strong>Tiempos de Coagulación:</strong> Basal antes de anticoagulación.</li>
+                        <li><strong>Química Sanguínea:</strong> Glucosa (pronóstico), Creatinina (ajuste de dosis, riesgo por contraste).</li>
+                        <li><strong>Perfil de Lípidos:</strong> Tomar al ingreso (se alteran post-IAM).</li>
+                    </ul>
+                </div>
+                <div class="image-placeholder" id="img-ckmb">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un gráfico de cinética comparando la curva de hs-cTn (larga) con la curva de CK-MB (corta), ilustrando por qué CK-MB es útil para el reinfarto.</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-ckmb')">
+                        <button onclick="applyImage('img-ckmb')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21</span>
+                <span id="slide-counter">15 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 16: Estudios de Imagen -->
+        <section class="slide">
+            <h2 class="slide-title">Diagnóstico: Modalidades de Imagen</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-2xl font-bold">Ecocardiograma Transtorácico (ECO-TT)</p>
+                     <ul>
+                        <li>Herramienta de cabecera, no invasiva.</li>
+                        <li><strong>Hallazgo Clave:</strong> Alteraciones de la motilidad parietal regional (hipocinesia, acinesia). Aparecen minutos después de la oclusión (antes que el EKG y las enzimas).</li>
+                        <li>Evalúa la <strong>Función Ventricular (FEVI)</strong>, que es el predictor pronóstico más importante a largo plazo.</li>
+                        <li>Detecta <strong>complicaciones mecánicas</strong> agudas (insuficiencia mitral, CIV, rotura de pared, derrame pericárdico).</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold">Angiografía Coronaria (Cateterismo)</p>
+                     <ul>
+                        <li><strong>Es el Gold Standard diagnóstico.</strong></li>
+                        <li>Visualiza directamente la anatomía coronaria.</li>
+                        <li>Identifica la <strong>"lesión culpable"</strong>, la gravedad de la estenosis y la presencia de trombo.</li>
+                        <li>Es diagnóstica y terapéutica (permite la ICP).</li>
+                    </ul>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">16 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 17: Diagnóstico Diferencial -->
+        <section class="slide">
+            <h2 class="slide-title">Diagnóstico Diferencial del Dolor Torácico</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-xl">Condiciones que amenazan la vida y deben descartarse rápidamente:</p>
+                    <ul>
+                        <li><strong>Disección Aórtica:</strong> Dolor "desgarrante", migratorio, asimetría de pulsos, ensanchamiento mediastinal.</li>
+                        <li><strong>Tromboembolia Pulmonar (TEP):</strong> Disnea súbita, dolor pleurítico, taquicardia, hipoxemia. (Dímero-D, AngioTAC).</li>
+                        <li><strong>Pericarditis Aguda:</strong> Dolor pleurítico que mejora al sentarse, frote pericárdico, EKG con elevación ST cóncava y difusa, depresión del PR.</li>
+                        <li><strong>Neumotórax a Tensión:</strong> Disnea súbita, desviación traqueal, ausencia de ruidos respiratorios.</li>
+                        <li><strong>Rotura Esofágica (Boerhaave):</strong> Dolor severo post-vómito, enfisema subcutáneo.</li>
+                    </ul>
+                    <p class="text-xl mt-4"><strong>Causas no letales comunes:</strong> Costocondritis, espasmo esofágico, ERGE, crisis de ansiedad.</p>
+                </div>
+                <div class="image-placeholder" id="img-dx-diff">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Una AngioTAC que muestre un flap de disección aórtica o una TEP masiva. O un EKG de pericarditis (elevación difusa cóncava).</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-dx-diff')">
+                        <button onclick="applyImage('img-dx-diff')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21</span>
+                <span id="slide-counter">17 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 18: Manejo IAMCEST -->
+        <section class="slide">
+            <h2 class="slide-title">Manejo: Infarto con Elevación del ST (IAMCEST)</h2>
+            <div class="slide-content full-width">
+                 <div class="text-center">
+                    <p class="text-3xl">La estrategia se centra en una sola prioridad:</p>
+                    <p class="text-6xl font-bold my-12 text-red-400 animate-pulse">REPERFUSIÓN INMEDIATA</p>
+                    <p class="text-3xl">La elección de la estrategia (ICP vs. Fibrinólisis) depende de un factor:</p>
+                    <p class="text-5xl font-bold my-8 text-yellow-300">EL TIEMPO</p>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">18 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 19: Estrategia de Reperfusión IAMCEST -->
+        <section class="slide">
+            <h2 class="slide-title">IAMCEST: Estrategia de Reperfusión y Tiempos</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-2xl font-bold">1. ICP Primaria (Angioplastia + Stent)</p>
+                    <p class="text-xl">Es la estrategia <strong>preferida</strong> si se puede realizar de forma oportuna.</p>
+                    <ul>
+                        <li><strong>Tiempos Meta:</strong>
+                            <ul>
+                                <li>En centro con capacidad de ICP: <strong>Puerta-Balón < 90 min</strong>.</li>
+                                <li>En centro SIN capacidad de ICP: Transferir si se logra <strong>PCM-Balón < 120 min</strong>.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <br>
+                    <p class="text-2xl font-bold">2. Fibrinólisis (Trombolisis)</p>
+                    <p class="text-xl">Indicada si <strong>NO</strong> es posible una ICP en los tiempos establecidos (ej. > 120 min de traslado).</p>
+                    <ul>
+                        <li><strong>Tiempo Meta:</strong> <strong>Puerta-Aguja < 30 min</strong>.</li>
+                        <li>Agentes: Fibrino-específicos (Tenecteplase, Alteplase).</li>
+                        <li><strong>Estrategia Farmacoinvasiva:</strong> <strong>TODOS</strong> los pacientes deben ser trasladados a un centro con ICP post-fibrinólisis (para angiografía de rutina 2-24h después, o de rescate si la lisis falla).</li>
+                    </ul>
+                </div>
+                <div class="image-placeholder" id="img-flowchart">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama de flujo (flowchart) que muestre la decisión: "Diagnóstico IAMCEST" -> "¿Centro con ICP?" -> Tiempos de traslado -> "ICP Primaria" vs "Fibrinólisis".</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-flowchart')">
+                        <button onclick="applyImage('img-flowchart')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">19 / 30</span>
+            </footer>
+        </section>
+        
+        <!-- Diapositiva 20: Código Infarto -->
+        <section class="slide">
+            <h2 class="slide-title">IAMCEST: "Código Infarto" (GPC México)</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-xl">Es la implementación logística de la estrategia de reperfusión. No es solo un tratamiento, es un <strong>SISTEMA</strong>.</p>
+                    <p class="text-xl mt-4"><strong>Objetivos Clave del Código Infarto:</strong></p>
+                    <ul>
+                        <li>Reducir el tiempo total de isquemia.</li>
+                        <li>Organizar redes de atención regionales.</li>
+                        <li><strong>EKG Prehospitalario:</strong> Realizado e interpretado por paramédicos.</li>
+                        <li><strong>Activación de "Single-Call":</strong> Una sola llamada del paramédico activa al equipo de hemodinámica en el hospital receptor.</li>
+                        <li><strong>"Bypass" de Urgencias:</strong> El paciente es trasladado directamente del domicilio/ambulancia a la sala de hemodinámica, evitando la admisión por urgencias.</li>
+                        <li>Establecer rutas de traslado claras desde hospitales sin ICP a hospitales con ICP.</li>
+                    </ul>
+                </div>
+                 <div class="image-placeholder" id="img-codigo">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un mapa o diagrama logístico que muestre una ambulancia haciendo EKG, llamando a un centro de ICP y yendo directamente (bypass de urgencias).</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-codigo')">
+                        <button onclick="applyImage('img-codigo')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 (Énfasis en la implementación logística)</span>
+                <span id="slide-counter">20 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 21: IAMCEST - Farmacoterapia Aguda (DAPT) -->
+        <section class="slide">
+            <h2 class="slide-title">IAMCEST: Farmacoterapia Aguda (DAPT)</h2>
+            <div class="slide-content full-width">
+                <div>
+                    <p class="text-2xl mb-4">La Terapia Antiagregante Plaquetaria Dual (DAPT) es mandatoria:</p>
+                    <p class="text-2xl font-bold">1. Aspirina (AAS)</p>
+                     <ul>
+                        <li><strong>Dosis de Carga:</strong> 162-325 mg (masticable para absorción rápida).</li>
+                        <li><strong>Mantenimiento:</strong> 75-100 mg/día (de por vida).</li>
+                        <li>Vía: Oral.</li>
+                    </ul>
+                    <br>
+                    <p class="text-2xl font-bold">2. Inhibidor del Receptor P2Y12</p>
+                     <ul>
+                        <li>Se añade a la AAS lo antes posible. En ICP, se prefieren los potentes:</li>
+                        <li><strong>Ticagrelor:</strong> Carga 180 mg, Manto 90 mg c/12h.</li>
+                        <li><strong>Prasugrel:</strong> Carga 60 mg, Manto 10 mg/día.
+                            <ul><li><strong>Contraindicado:</strong> Antecedente de EVC/AIT. Precaución si >75 años o <60 kg.</li></ul>
+                        </li>
+                        <li><strong>Clopidogrel:</strong> Carga 300-600 mg, Manto 75 mg/día.
+                            <ul><li>Usar si hay contraindicación para los potentes (ej. alto riesgo de sangrado, antecedente de EVC) o si el paciente recibió fibrinólisis.</li></ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">21 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 22: IAMCEST - Farmacoterapia (Anticoag. y Adyuvante) -->
+        <section class="slide">
+            <h2 class="slide-title">IAMCEST: Farmacoterapia (Anticoagulación y Adyuvante)</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-2xl font-bold">3. Anticoagulación</p>
+                    <p class="text-xl">Necesaria durante el procedimiento y/o hospitalización.</p>
+                     <ul>
+                        <li><strong>En ICP Primaria:</strong> <strong>Heparina No Fraccionada (HNF)</strong> es el estándar. (Bolo IV 70-100 UI/kg).</li>
+                        <li><strong>En Fibrinólisis:</strong> <strong>Enoxaparina</strong> (HBPM) (Bolo IV + SC) o HNF. Mantener por 48h o hasta revascularización.</li>
+                    </ul>
+                    <br>
+                    <p class="text-2xl font-bold">4. Terapia Adyuvante (en primeras 24h)</p>
+                     <ul>
+                        <li><strong>Betabloqueantes (Orales):</strong> Iniciar si está estable (sin IC, bajo gasto, hipotensión). Reducen demanda de $O_2$ y arritmias.</li>
+                        <li><strong>Estatinas de Alta Intensidad:</strong> (Atorvastatina 80 mg o Rosuvastatina 20-40 mg). Iniciar lo antes posible (efectos pleiotrópicos).</li>
+                        <li><strong>IECA / ARA-II:</strong> Iniciar en todos, especialmente si hay FEVI $\leq 40\%$, IC, HTA, DM o IAM anterior. Previenen remodelado ventricular.</li>
+                        <li><strong>Nitroglicerina:</strong> Para dolor isquémico persistente o HTA. (SL o IV).
+                             <ul><li><strong>Contraindicada:</strong> Hipotensión ($PAS < 90$), bradicardia, o sospecha de infarto de VD.</li></ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">22 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 23: Manejo SCASEST -->
+        <section class="slide">
+            <h2 class="slide-title">Manejo: Síndrome Coronario Agudo Sin Elevación del ST (SCASEST)</h2>
+            <div class="slide-content full-width">
+                 <div class="text-center">
+                    <p class="text-3xl">A diferencia del IAMCEST, la estrategia no es la reperfusión inmediata universal. La clave es:</p>
+                    <p class="text-6xl font-bold my-12 text-yellow-300">ESTRATIFICACIÓN DEL RIESGO</p>
+                    <p class="text-3xl">El riesgo (clínico, EKG, biomarcadores) define la <strong>urgencia</strong> de la estrategia invasiva (angiografía).</p>
+                    <p class="text-4xl font-bold my-8 text-teal-300">"El Riesgo es Tiempo"</p>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">23 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 24: SCASEST - Estratificación de Riesgo -->
+        <section class="slide">
+            <h2 class="slide-title">SCASEST: Estratificación de Riesgo y Tiempos</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-xl">Se usan escalas como el <strong>GRACE Score</strong> para predecir mortalidad y guiar la terapia.</p>
+                    <p class="text-xl mt-4"><strong>Clasificación de Riesgo (Guías ESC):</strong></p>
+                     <ul>
+                        <li><strong>Riesgo Muy Alto:</strong>
+                            <ul>
+                                <li>Inestabilidad hemodinámica / Shock.</li>
+                                <li>Dolor refractario a tratamiento.</li>
+                                <li>Arritmias ventriculares malignas.</li>
+                                <li>Complicaciones mecánicas.</li>
+                            </ul>
+                            <li><strong>Manejo:</strong> Estrategia Invasiva <strong>INMEDIATA (< 2 horas)</strong>.</li>
+                        </li>
+                        <br>
+                        <li><strong>Riesgo Alto:</strong>
+                            <ul>
+                                <li>Diagnóstico de IAMSEST (dinámica de troponinas).</li>
+                                <li>Cambios dinámicos en ST-T.</li>
+                                <li>GRACE Score > 140.</li>
+                            </ul>
+                            <li><strong>Manejo:</strong> Estrategia Invasiva <strong>TEMPRANA (< 24 horas)</strong>.</li>
+                        </li>
+                        <br>
+                        <li><strong>Riesgo Bajo:</strong>
+                            <ul>
+                                <li>Pacientes sin criterios de alto riesgo.</li>
+                            </ul>
+                            <li><strong>Manejo:</strong> Estrategia Invasiva <strong>SELECTIVA</strong> (en 24-72h o guiada por isquemia).</li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="image-placeholder" id="img-grace">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Una captura de pantalla de la calculadora GRACE o un diagrama de flujo simple que muestre los 3 niveles de riesgo y sus tiempos de acción.</p>
+                    <div class="input-group">
+                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-grace')">
+                        <button onclick="applyImage('img-grace')">OK</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">ESC Guidelines for ACS (2023). Eur Heart J. 2023;44(38):3720-3826.</span>
+                <span id="slide-counter">24 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 25: SCASEST - Terapia Antitrombótica -->
+        <section class="slide">
+            <h2 class="slide-title">SCASEST: Terapia Antitrombótica</h2>
+            <div class="slide-content full-width">
+                <div>
+                    <p class="text-2xl font-bold">1. Terapia Antiagregante Dual (DAPT)</p>
+                    <ul>
+                        <li><strong>Aspirina:</strong> Carga 162-325 mg, Manto 75-100 mg/día. (Para todos).</li>
+                        <li><strong>Inhibidor P2Y12:</strong> (Ticagrelor o Clopidogrel).
+                            <ul><li><strong>Prasugrel:</strong> NO usar en SCASEST hasta conocer la anatomía coronaria (solo para pacientes que van a ICP).</li></ul>
+                        </li>
+                        <li><strong>¡Debate del Pre-Tratamiento!</strong> (Ver diapositiva de Guías).</li>
+                    </ul>
+                    <br>
+                    <p class="text-2xl font-bold">2. Anticoagulación</p>
+                    <p class="text-xl">Iniciar al diagnóstico. La elección depende de la estrategia (invasiva vs. conservadora).</p>
+                    <ul>
+                        <li><strong>Fondaparinux (Inhibidor Xa):</strong> 2.5 mg SC/día.
+                            <ul><li><strong>Preferencia en GPC/ESC</strong> por tener el <strong>menor riesgo de sangrado</strong>.</li>
+                            <li>Desventaja: Si el paciente va a ICP, requiere un bolo adicional de HNF (riesgo de trombosis de catéter).</li></ul>
+                        </li>
+                        <li><strong>Enoxaparina (HBPM):</strong> 1 mg/kg SC c/12h. (Ajustar si ClCr < 30).</li>
+                        <li><strong>Heparina No Fraccionada (HNF):</strong> Bolo y perfusión IV.</li>
+                    </ul>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">25 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 26: Comparativa de Guías -->
+        <section class="slide">
+            <h2 class="slide-title">Comparativa de Guías: GPC México vs. Internacionales</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-xl">Aunque los principios son los mismos (4ta Def., Reperfusión), existen diferencias clave y evoluciones recientes.</p>
+                    <br>
+                    <p class="text-2xl font-bold">GPC México (IMSS-357-21)</p>
+                     <ul>
+                        <li>Publicada en 2021.</li>
+                        <li>Excelente adaptación a la logística nacional (<strong>énfasis en "Código Infarto"</strong>).</li>
+                        <li>Reconoce hs-cTn, pero los algoritmos rápidos (0/1h) no están tan estandarizados.</li>
+                        <li>Recomienda Fondaparinux en SCASEST.</li>
+                        <li>Considera Clopidogrel, Ticagrelor y Prasugrel post-ICP.</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold">Guías ESC (2023) y AHA/ACC</p>
+                     <ul>
+                        <li>ESC 2023 es la más reciente.</li>
+                        <li>Estandariza los algoritmos <strong>0/1h y 0/2h</strong> como Clase I.</li>
+                        <li>Dos cambios mayores muy debatidos:
+                            <ol class="list-decimal pl-6 mt-2">
+                                <li>Preferencia de Prasugrel sobre Ticagrelor en ICP (IAMCEST y SCASEST).</li>
+                                <li>Recomendación <strong>EN CONTRA</strong> del pre-tratamiento rutinario con P2Y12 en SCASEST.</li>
+                            </ol>
+                        </li>
+                        <li>Introduce la <strong>Colchicina</strong> a dosis bajas como terapia anti-inflamatoria (Clase IIb) para prevención secundaria.</li>
+                    </ul>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">26 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 27: Diferencia Clave 1: Elección de P2Y12 -->
+        <section class="slide">
+            <h2 class="slide-title">Diferencia Clave 1: Elección del P2Y12 (Post-ICP)</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-2xl font-bold">GPC México (2021) / AHA-ACC</p>
+                    <p class="text-xl">En pacientes que van a ICP (STEMI o NSTEMI), Ticagrelor o Prasugrel son preferidos sobre Clopidogrel (Clase I).</p>
+                    <p class="text-xl mt-2">No hay una recomendación de superioridad entre Ticagrelor y Prasugrel.</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-yellow-300">ESC (2023) - El Cambio</p>
+                    <p class="text-xl">Basado en el meta-análisis de ISAR-REACT 5 y otros, la ESC ahora da una recomendación Clase IIa para preferir:</p>
+                    <p class="text-3xl text-center font-bold my-6 p-4 border-2 border-teal-400 rounded-lg">Prasugrel > Ticagrelor</p>
+                    <p class="text-xl"><strong>Razón:</strong> Se observó una eficacia isquémica similar o superior para Prasugrel, pero con un <strong>menor riesgo de sangrado</strong> comparado con Ticagrelor (un hallazgo controversial que revierte la percepción previa).</p>
+                    <p class="text-lg mt-4">(Recordar: Prasugrel sigue contraindicado si hay antecedente de EVC/AIT).</p>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">Schüpke S, et al. (ISAR-REACT 5). N Engl J Med. 2019;381(16):1524-1534. | ESC Guidelines (2023)</span>
+                <span id="slide-counter">27 / 30</span>
+            </footer>
+        </section>
+        
+        <!-- Diapositiva 28: Diferencia Clave 2: Pre-tratamiento SCASEST -->
+        <section class="slide">
+            <h2 class="slide-title">Diferencia Clave 2: "Pre-Tratamiento" en SCASEST</h2>
+            <div class="slide-content">
+                <div>
+                    <p class="text-2xl font-bold">Práctica Histórica (Reflejada en GPC 2021)</p>
+                    <p class="text-xl">Administrar DAPT (AAS + P2Y12) tan pronto como se hacía el diagnóstico de SCASEST, <strong>antes</strong> de la angiografía.</p>
+                    <p class="text-xl mt-2"><strong>Razón (Teórica):</strong> Estabilizar la placa lo antes posible.</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-yellow-300">ESC (2023) - El Cambio (Clase III - No Hacer)</p>
+                    <p class="text-xl">El pre-tratamiento rutinario con un inhibidor P2Y12 en pacientes con SCASEST de anatomía desconocida y programados para una estrategia invasiva temprana <strong>NO se recomienda (Clase III - Daño)</strong>.</p>
+                    <p class="text-xl mt-4"><strong>Razón (Evidencia):</strong>
+                        <ul>
+                            <li>No demostró reducir eventos isquémicos.</li>
+                            <li><strong>Aumenta significativamente el riesgo de sangrado mayor</strong> (especialmente si el paciente requiere CABG urgente).</li>
+                        </ul>
+                    </p>
+                    <p class="text-xl mt-4"><strong>Práctica Actual:</strong> Dar AAS al ingreso. Esperar a la angiografía. Si se decide ICP, administrar la carga de P2Y12 (Prasugrel/Tica/Clopi) en la sala de hemodinámica.</p>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">ESC Guidelines for ACS (2023). Eur Heart J. 2023;44(38):3720-3826.</span>
+                <span id="slide-counter">28 / 30</span>
+            </footer>
+        </section>
+
+        <!-- Diapositiva 29: Conclusiones -->
+        <section class="slide">
+            <h2 class="slide-title">Conclusiones y Puntos Clave</h2>
+            <div class="slide-content full-width">
+                <div>
+                    <ul>
+                        <li>El diagnóstico del IAM se basa en la <strong>tríada</strong> de clínica, EKG y la <strong>dinámica</strong> de hs-cTn.</li>
+                        <li>El EKG en < 10 min es la clave del triaje: Separa <strong>IAMCEST</strong> de <strong>SCASEST</strong>.</li>
+                        <li><strong>IAMCEST:</strong> "Tiempo es Músculo". El objetivo es la <strong>reperfusión inmediata</strong> (ICP < 90/120 min o Fibrinólisis < 30 min). "Código Infarto" es la logística para lograrlo.</li>
+                        <li><strong>SCASEST:</strong> "Riesgo es Tiempo". El objetivo es la <strong>estratificación (GRACE)</strong> para definir la urgencia de la angiografía (<2h, <24h, o selectiva).</li>
+                        <li>Las guías evolucionan: La evidencia más reciente (ESC 2023) favorece a Prasugrel sobre Ticagrelor post-ICP y desaconseja el pre-tratamiento rutinario en SCASEST.</li>
+                    </ul>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
+                <span id="slide-counter">29 / 30</span>
+            </footer>
+        </section>
+        
+        <!-- Diapositiva 30: Preguntas -->
+        <section class="slide title-slide">
+            <div>
+                <h1 class="main-title">Gracias.</h1>
+                <p class="subtitle">Preguntas y Discusión</p>
+                 <div class="mt-12">
+                    <p class="text-2xl text-gray-200">Brandon [Tu Nombre Completo Aquí]</p>
+                    <p class="text-xl text-gray-400">Médico Pasante del Servicio Social | ISSSTE</p>
+                </div>
+            </div>
+            <footer>
+                <span class="bibliography"></span>
+                <span id="slide-counter">30 / 30</span>
+            </footer>
+        </section>
+
+    </div>
+
+    <script>
+        const slideContainer = document.getElementById('slide-container');
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentSlide = 1;
+
+        // --- Navegación por Teclado ---
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // --- Navegación por Scroll/Touch ---
+        slideContainer.addEventListener('scroll', () => {
+            const newSlideIndex = Math.round(slideContainer.scrollLeft / window.innerWidth) + 1;
+            if (newSlideIndex !== currentSlide) {
+                currentSlide = newSlideIndex;
+                updateCounters();
+            }
+        });
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                const newScrollLeft = window.innerWidth * currentSlide;
+                slideContainer.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                const newScrollLeft = window.innerWidth * (currentSlide - 2);
+                slideContainer.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+            }
+        }
+
+        // --- Actualizar Contadores ---
+        function updateCounters() {
+            slides.forEach((slide, index) => {
+                const counter = slide.querySelector('#slide-counter');
+                if (counter) {
+                    counter.textContent = `${index + 1} / ${totalSlides}`;
+                }
+            });
+        }
+        
+        // --- Manejo de Imágenes ---
+        // Esta función se activa con la tecla "Enter"
+        function handleImageInput(event, elementId) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                applyImage(elementId);
+            }
+        }
+
+        // Esta función se activa con el botón "OK"
+        function applyImage(elementId) {
+            const placeholder = document.getElementById(elementId);
+            if (!placeholder) return;
+
+            const input = placeholder.querySelector('input[type="text"]');
+            const url = input.value.trim();
+
+            if (url) {
+                // Validar que sea una URL (simple)
+                if (url.startsWith('http://') || url.startsWith('https://')) {
+                    placeholder.style.backgroundImage = `url('${url}')`;
+                    // Ocultar los controles de input
+                    placeholder.querySelector('.suggestion').style.display = 'none';
+                    placeholder.querySelector('.input-group').style.display = 'none';
+                } else {
+                    alert('Por favor, introduce una URL válida (que comience con http:// o https://)');
+                }
+            }
+        }
+
+        // Inicializar contadores al cargar
+        updateCounters();
+    </script>
+</body>
+</html>
