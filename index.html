@@ -145,39 +145,21 @@
             color: #e6f1ff;
             margin-bottom: 1rem;
             font-size: 0.9rem;
+            /* Se mantiene para guiar al usuario */
         }
-
-        .image-placeholder input[type="text"] {
-            width: 80%;
-            padding: 0.5rem;
-            border-radius: 4px;
-            border: 1px solid #64ffda;
-            background-color: #e6f1ff;
-            color: #0a192f;
-            font-size: 0.9rem;
-        }
-        .image-placeholder input[type="text"]::placeholder {
-            color: #555;
-        }
-        .image-placeholder .input-group {
-            display: flex;
-            width: 80%;
-        }
-        .image-placeholder .input-group input {
-            flex-grow: 1;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-right: 0;
-        }
-        .image-placeholder .input-group button {
-            padding: 0.5rem 1rem;
-            background-color: #64ffda;
-            color: #0a192f;
-            border: none;
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
+        
+        /* Logo Placeholder en Slide 1 */
+        #logo-placeholder {
+            position: absolute;
+            top: 2.5rem; /* 40px */
+            right: 4rem; /* 64px */
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 2px dashed #64ffda;
+            border-radius: 8px;
         }
 
 
@@ -214,24 +196,32 @@
         
         <!-- Diapositiva 1: Título -->
         <section class="slide title-slide">
+            
+            <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+            <!-- Pega la URL del logo del ISSSTE dentro de url('...') -->
+            <div id="logo-placeholder" 
+                 style="background-image: url('https://placehold.co/100x100/ffffff/0a192f?text=Logo+ISSSTE');">
+                <!-- No toques dentro de este div -->
+            </div>
+            <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+
             <div>
                 <h1 class="main-title">Infarto Agudo de Miocardio</h1>
                 <p class="subtitle">Una Revisión Clínica Basada en Evidencia</p>
                 <div class="mt-12">
-                    <p class="text-2xl text-gray-200">Brandon José Arguelles Armenta</p>
+                    <p class="text-2xl text-gray-200">Brandon [Tu Nombre Completo Aquí]</p>
                     <p class="text-xl text-gray-400">Médico Pasante del Servicio Social</p>
                     <p class="text-xl text-gray-400">Institución: ISSSTE</p>
-                    <p class="text-xl text-gray-400 mt-4">Miércoles 29 de Octubre del 2025</p>
+                    <p class="text-xl text-gray-400 mt-4">Miércoles 29</p>
                 </div>
             </div>
             <footer>
                 <span class="bibliography"></span>
-                <span id="slide-counter">1 / 30</span>
+                <span id="slide-counter">1 / 29</span>
             </footer>
         </section>
-
-
-        <!-- Diapositiva 3: Definición y Fisiopatología -->
+        
+        <!-- Diapositiva 2: Definición y Fisiopatología -->
         <section class="slide">
             <h2 class="slide-title">Definición y Fisiopatología</h2>
             <div class="slide-content">
@@ -240,7 +230,7 @@
                     <p>Lesión miocárdica aguda (dinámica de troponinas) + Evidencia de isquemia miocárdica aguda (al menos uno):</p>
                     <ul>
                         <li>Síntomas de isquemia.</li>
-                        <li>Nuevos cambios EKG.</li>
+                        <li>Nuevos cambios EKG (ST-T, BRI).</li>
                         <li>Desarrollo de ondas Q patológicas.</li>
                         <li>Evidencia por imagen de nueva pérdida de miocardio viable / motilidad parietal.</li>
                         <li>Trombo intracoronario (angiografía o autopsia).</li>
@@ -255,51 +245,55 @@
                         <li>Formación de un <strong>trombo oclusivo</strong> que interrumpe el flujo sanguíneo.</li>
                     </ul>
                 </div>
-                <div class="image-placeholder" id="img-placa">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama que muestre la rotura de una placa aterosclerótica y la formación de un trombo oclusivo en una arteria coronaria.</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-placa')">
-                        <button onclick="applyImage('img-placa')">OK</button>
-                    </div>
+                
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen de la placa aterosclerótica dentro de url('...') -->
+                <div class="image-placeholder" id="img-placa" 
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Rotura+de+Placa');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Diagrama de rotura de placa aterosclerótica y formación de trombo.</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                
             </div>
             <footer>
                 <span class="bibliography">Thygesen K, et al. J Am Coll Cardiol. 2018;72(18):2231-2264.</span>
-                <span id="slide-counter">3 / 30</span>
+                <span id="slide-counter">2 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 4: Clasificación Universal (Tipos 1-5) -->
+        <!-- Diapositiva 3: Clasificación Universal (Tipos 1-5) -->
         <section class="slide">
             <h2 class="slide-title">Clasificación Etiológica del IAM</h2>
             <div class="slide-content">
                 <div>
                     <ul>
                         <li><strong>Tipo 1:</strong> IAM espontáneo por evento aterotrombótico (rotura de placa). <strong>Es el foco principal.</strong></li>
-                        <li><strong>Tipo 2:</strong> Desequilibrio entre aporte y demanda de O2 (espasmo, disección, anemia, arritmia, HTA/hipotensión). No por rotura de placa aguda.</li>
+                        <li><strong>Tipo 2:</strong> Desequilibrio entre aporte y demanda de $O_2$ (espasmo, disección, anemia, arritmia, HTA/hipotensión). No por rotura de placa aguda.</li>
                         <li><strong>Tipo 3:</strong> Muerte cardíaca súbita, con síntomas de isquemia, antes de poder tomar biomarcadores.</li>
-                        <li><strong>Tipo 4a:</strong> IAM asociado a Intervención Coronaria Percutánea.</li>
+                        <li><strong>Tipo 4a:</strong> IAM asociado a Intervención Coronaria Percutánea (ICP) (cTn >5x LSN).</li>
                         <li><strong>Tipo 4b:</strong> IAM por trombosis de stent.</li>
-                        <li><strong>Tipo 5:</strong> IAM asociado a Cirugía de Revascularización Coronaria.</li>
+                        <li><strong>Tipo 5:</strong> IAM asociado a Cirugía de Revascularización Coronaria (CABG) (cTn >10x LSN).</li>
                     </ul>
                     <p class="mt-6 text-xl"><strong>Relevancia Clínica: Tipo 1 vs. Tipo 2</strong></p>
                     <p>Diferenciarlos es crucial. El <strong>IAM Tipo 1</strong> requiere terapia antitrombótica agresiva y revascularización. El <strong>IAM Tipo 2</strong> requiere tratar la causa subyacente (ej. corregir anemia, controlar arritmia).</p>
                 </div>
-                <div class="image-placeholder" id="img-tipos">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama simple comparando visualmente el IAM Tipo 1 (trombo en placa) vs. el IAM Tipo 2 (ej. arteria con espasmo o estenosis fija con aumento de demanda).</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-tipos')">
-                        <button onclick="applyImage('img-tipos')">OK</button>
-                    </div>
+                
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen de tipos de IAM dentro de url('...') -->
+                <div class="image-placeholder" id="img-tipos" 
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=IAM+Tipo+1+vs+Tipo+2');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Diagrama comparativo visual del IAM Tipo 1 (trombo) vs. Tipo 2 (espasmo o desequilibrio O2).</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+
             </div>
             <footer>
                 <span class="bibliography">Thygesen K, et al. J Am Coll Cardiol. 2018;72(18):2231-2264.</span>
-                <span id="slide-counter">4 / 30</span>
+                <span id="slide-counter">3 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 5: Abordaje Diagnóstico Inicial -->
+        <!-- Diapositiva 4: Abordaje Diagnóstico Inicial -->
         <section class="slide">
             <h2 class="slide-title">Abordaje Diagnóstico Inicial</h2>
             <div class="slide-content full-width">
@@ -325,11 +319,11 @@
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">5 / 30</span>
+                <span id="slide-counter">4 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 6: Presentación Clínica -->
+        <!-- Diapositiva 5: Presentación Clínica -->
         <section class="slide">
             <h2 class="slide-title">Presentación Clínica: Síntomas</h2>
             <div class="slide-content">
@@ -357,11 +351,11 @@
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">6 / 30</span>
+                <span id="slide-counter">5 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 7: El EKG: La Decisión Crítica -->
+        <!-- Diapositiva 6: El EKG: La Decisión Crítica -->
         <section class="slide">
             <h2 class="slide-title">El EKG: La Decisión Crítica (< 10 min)</h2>
             <div class="slide-content">
@@ -385,41 +379,46 @@
                     </ul>
                 </div>
                 <div class="flex flex-col gap-4">
-                    <div class="image-placeholder h-1/2" id="img-stemi">
-                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un trazo de EKG claro que muestre una elevación del segmento ST (ej. en V2-V4, "lomo de delfín").</p>
-                        <div class="input-group">
-                            <input type="text" placeholder="URL de imagen STEMI" onkeydown="handleImageInput(event, 'img-stemi')">
-                            <button onclick="applyImage('img-stemi')">OK</button>
-                        </div>
+                    
+                    <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                    <!-- Pega la URL de la imagen de STEMI dentro de url('...') -->
+                    <div class="image-placeholder h-1/2" id="img-stemi"
+                         style="background-image: url('https://placehold.co/600x250/1e3a5f/e6f1ff?text=EKG+con+Elevación+ST');">
+                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Trazo de EKG claro que muestre una elevación del segmento ST (ej. en V2-V4, "lomo de delfín").</p>
                     </div>
-                    <div class="image-placeholder h-1/2" id="img-nstemi">
-                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un trazo de EKG que muestre una depresión del segmento ST o una inversión de la onda T.</p>
-                        <div class="input-group">
-                            <input type="text" placeholder="URL de imagen SCASEST" onkeydown="handleImageInput(event, 'img-nstemi')">
-                            <button onclick="applyImage('img-nstemi')">OK</button>
-                        </div>
+                    <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                    
+                    <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                    <!-- Pega la URL de la imagen de SCASEST dentro de url('...') -->
+                    <div class="image-placeholder h-1/2" id="img-nstemi"
+                         style="background-image: url('https://placehold.co/600x250/1e3a5f/e6f1ff?text=EKG+con+Depresión+ST');">
+                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Trazo de EKG que muestre una depresión del segmento ST o una inversión de la onda T.</p>
                     </div>
+                    <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                    
                 </div>
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">7 / 30</span>
+                <span id="slide-counter">6 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 8: Criterios EKG de IAMCEST -->
+        <!-- Diapositiva 7: Criterios EKG de IAMCEST -->
         <section class="slide">
             <h2 class="slide-title">Diagnóstico EKG: Criterios de IAMCEST</h2>
             <div class="slide-content full-width">
                 <div>
                     <p class="text-xl">Nueva elevación del segmento ST en el <strong>Punto J</strong>, en al menos <strong>dos derivaciones contiguas</strong>:</p>
                     <ul>
-                        <li><strong>$\geq 1$ mm (0.1 mV)</strong> en todas las derivaciones (ej. cara inferior, lateral).</li>
+                        <!-- CORRECCIÓN DE SÍMBOLO: '$\geq' cambiado a '≥' -->
+                        <li><strong>≥ 1 mm (0.1 mV)</strong> en todas las derivaciones (ej. cara inferior, lateral).</li>
                         <li class="my-4">...Excepto en <strong>V2-V3</strong>, donde los umbrales dependen de sexo y edad:
                             <ul>
-                                <li><strong>$\geq 2.5$ mm</strong> en hombres < 40 años.</li>
-                                <li><strong>$\geq 2$ mm</strong> en hombres $\geq 40$ años.</li>
-                                <li><strong>$\geq 1.5$ mm</strong> en mujeres (cualquier edad).</li>
+                                <!-- CORRECCIÓN DE SÍMBOLO: '$\geq' cambiado a '≥' -->
+                                <li><strong>≥ 2.5 mm</strong> en hombres < 40 años.</li>
+                                <li><strong>≥ 2 mm</strong> en hombres ≥ 40 años.</li>
+                                <li><strong>≥ 1.5 mm</strong> en mujeres (cualquier edad).</li>
                             </ul>
                         </li>
                     </ul>
@@ -433,11 +432,11 @@
             </div>
             <footer>
                 <span class="bibliography">Thygesen K, et al. J Am Coll Cardiol. 2018;72(18):2231-2264.</span>
-                <span id="slide-counter">8 / 30</span>
+                <span id="slide-counter">7 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 9: Localización del Infarto (Parte 1) -->
+        <!-- Diapositiva 8: Localización del Infarto (Parte 1) -->
         <section class="slide">
             <h2 class="slide-title">Diagnóstico EKG: Localización del Infarto (1/2)</h2>
             <div class="slide-content">
@@ -480,21 +479,23 @@
                     </table>
                     <p class="mt-4 text-yellow-300"><strong>Cambios Recíprocos (en espejo):</strong> La depresión del ST en derivaciones opuestas (ej. depresión en I, aVL en un infarto inferior) confirma el diagnóstico y sugiere un evento más extenso.</p>
                 </div>
-                <div class="image-placeholder" id="img-ekg-leads">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama del corazón con las arterias coronarias (ADA, ACx, ACD) y otro diagrama mostrando la agrupación de las 12 derivaciones del EKG por pared (Anterior, Inferior, Lateral).</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-ekg-leads')">
-                        <button onclick="applyImage('img-ekg-leads')">OK</button>
-                    </div>
+                
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen de localización EKG dentro de url('...') -->
+                <div class="image-placeholder" id="img-ekg-leads"
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Localización+EKG');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Diagrama de arterias coronarias y agrupación de las 12 derivaciones por pared cardíaca.</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">9 / 30</span>
+                <span id="slide-counter">8 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 10: Localización del Infarto (Parte 2) -->
+        <!-- Diapositiva 9: Localización del Infarto (Parte 2) -->
         <section class="slide">
             <h2 class="slide-title">Diagnóstico EKG: Localización del Infarto (2/2)</h2>
             <div class="slide-content">
@@ -504,33 +505,38 @@
                     <p class="text-2xl font-bold">Infarto Posterior</p>
                     <ul>
                         <li>Sospechar con: <strong>Depresión del ST en V1-V3</strong> (imagen en espejo).</li>
-                        <li>Diagnóstico: Elevación del ST $\geq 0.5$ mm en derivaciones posteriores <strong>V7-V9</strong>.</li>
+                        <!-- CORRECCIÓN DE SÍMBOLO: '$\geq' cambiado a '≥' -->
+                        <li>Diagnóstico: Elevación del ST ≥ 0.5 mm en derivaciones posteriores <strong>V7-V9</strong>.</li>
                         <li>Arteria: Generalmente ACx o ACD.</li>
                     </ul>
                     <br>
                     <p class="text-2xl font-bold">Infarto de Ventrículo Derecho (VD)</p>
                      <ul>
                         <li>Sospechar en: <strong>TODO infarto de cara inferior (II, III, aVF)</strong>.</li>
-                        <li>Diagnóstico: Elevación del ST $\geq 1$ mm en derivaciones derechas (<strong>V3R, V4R</strong>).</li>
+                        <!-- CORRECCIÓN DE SÍMBOLO: '$\geq' cambiado a '≥' -->
+                        <li>Diagnóstico: Elevación del ST ≥ 1 mm en derivaciones derechas (<strong>V3R, V4R</strong>).</li>
                         <li>Arteria: Coronaria Derecha (ACD) proximal.</li>
-                        <li><strong>Implicación Clínica:</strong> Pacientes <strong>dependientes de precarga</strong>. ¡Contraindicados los nitratos y morfina por riesgo de hipotensión severa!</li>
+                        <!-- CORRECCIÓN DE SÍMBOLO: '($PAS < 90$)' cambiado a '(PAS < 90)' -->
+                        <li><strong>Implicación Clínica:</strong> Pacientes <strong>dependientes de precarga</strong>. ¡Contraindicados los nitratos y morfina por riesgo de hipotensión severa (PAS < 90 mmHg)!</li>
                     </ul>
                 </div>
-                <div class="image-placeholder" id="img-ekg-extra">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama que muestre la colocación de las derivaciones V7-V9 en la espalda y V3R-V4R en el hemitórax derecho.</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-ekg-extra')">
-                        <button onclick="applyImage('img-ekg-extra')">OK</button>
-                    </div>
+
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen de derivaciones extra dentro de url('...') -->
+                <div class="image-placeholder" id="img-ekg-extra"
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Derivaciones+V7-V9+y+V3R-V4R');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Diagrama de colocación de derivaciones V7-V9 (espalda) y V3R-V4R (hemitórax derecho).</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">10 / 30</span>
+                <span id="slide-counter">9 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 11: Evolución EKG del Infarto -->
+        <!-- Diapositiva 10: Evolución EKG del Infarto -->
         <section class="slide">
             <h2 class="slide-title">Diagnóstico EKG: Evolución Temporal del IAMCEST</h2>
             <div class="slide-content">
@@ -542,21 +548,23 @@
                         <li><strong>Fase Crónica (Semanas a Meses):</strong> El ST se normaliza. La inversión de T puede persistir o normalizarse. Las ondas Q patológicas (necrosis) suelen ser permanentes.</li>
                     </ol>
                 </div>
-                <div class="image-placeholder" id="img-ekg-evol">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Una serie de 4 trazos de EKG que muestren la secuencia evolutiva (Normal -> T Hiperaguda -> Elevación ST -> Onda Q / T Invertida).</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-ekg-evol')">
-                        <button onclick="applyImage('img-ekg-evol')">OK</button>
-                    </div>
+                
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen de evolución EKG dentro de url('...') -->
+                <div class="image-placeholder" id="img-ekg-evol"
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Evolución+del+IAM+en+EKG');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Serie de 4 trazos de EKG mostrando la secuencia evolutiva (T Hiperaguda -> Elevación ST -> Onda Q / T Invertida -> Onda Q crónica).</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                
             </div>
             <footer>
                 <span class="bibliography">Hampton, J. R. (2013). The ECG in Practice. Elsevier.</span>
-                <span id="slide-counter">11 / 30</span>
+                <span id="slide-counter">10 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 12: Equivalentes EKG de Alto Riesgo -->
+        <!-- Diapositiva 11: Equivalentes EKG de Alto Riesgo -->
         <section class="slide">
             <h2 class="slide-title">Diagnóstico EKG: Equivalentes de Alto Riesgo (Oclusión)</h2>
             <div class="slide-content">
@@ -578,29 +586,32 @@
                     </ul>
                 </div>
                  <div class="flex flex-col gap-4">
-                    <div class="image-placeholder h-1/2" id="img-dewinter">
-                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un trazo de EKG mostrando el patrón de De Winter en las precordiales.</p>
-                        <div class="input-group">
-                            <input type="text" placeholder="URL de imagen De Winter" onkeydown="handleImageInput(event, 'img-dewinter')">
-                            <button onclick="applyImage('img-dewinter')">OK</button>
-                        </div>
+                    
+                    <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                    <!-- Pega la URL de la imagen de De Winter dentro de url('...') -->
+                    <div class="image-placeholder h-1/2" id="img-dewinter"
+                         style="background-image: url('https://placehold.co/600x250/1e3a5f/e6f1ff?text=Patrón+de+De+Winter');">
+                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Trazo de EKG mostrando el patrón de De Winter en las precordiales.</p>
                     </div>
-                    <div class="image-placeholder h-1/2" id="img-wellens">
-                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un trazo de EKG mostrando el patrón de Wellens (Tipo A o B) en V2-V3.</p>
-                        <div class="input-group">
-                            <input type="text" placeholder="URL de imagen Wellens" onkeydown="handleImageInput(event, 'img-wellens')">
-                            <button onclick="applyImage('img-wellens')">OK</button>
-                        </div>
+                    <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                    
+                    <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                    <!-- Pega la URL de la imagen de Wellens dentro de url('...') -->
+                    <div class="image-placeholder h-1/2" id="img-wellens"
+                         style="background-image: url('https://placehold.co/600x250/1e3a5f/e6f1ff?text=Síndrome+de+Wellens');">
+                        <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Trazo de EKG mostrando el patrón de Wellens (Tipo A o B) en V2-V3.</p>
                     </div>
+                    <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                    
                 </div>
             </div>
             <footer>
                 <span class="bibliography">de Winter RJ, et al. N Engl J Med. 2008;359(19):2071-3. | de Zwaan C, et al. Am Heart J. 1982;103(4 Pt 2):730-6.</span>
-                <span id="slide-counter">12 / 30</span>
+                <span id="slide-counter">11 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 13: Biomarcadores Cardíacos -->
+        <!-- Diapositiva 12: Biomarcadores Cardíacos -->
         <section class="slide">
             <h2 class="slide-title">Diagnóstico: Biomarcadores Cardíacos</h2>
             <div class="slide-content">
@@ -621,21 +632,23 @@
                         <li>En el IAM, los valores cambian significativamente en mediciones seriadas.</li>
                     </ul>
                 </div>
-                <div class="image-placeholder" id="img-troponina">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un gráfico que muestre la curva de elevación y caída de la hs-cTn en un IAM, comparada con una línea plana elevada (lesión crónica).</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-troponina')">
-                        <button onclick="applyImage('img-troponina')">OK</button>
-                    </div>
+                
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen de la curva de troponina dentro de url('...') -->
+                <div class="image-placeholder" id="img-troponina"
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Curva+de+Troponina+(Aguda+vs+Crónica)');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Gráfico que muestre la curva de hs-cTn en un IAM (pico y caída) vs. una línea plana elevada (lesión crónica).</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">13 / 30</span>
+                <span id="slide-counter">12 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 14: Cinética de hs-cTn y Algoritmos -->
+        <!-- Diapositiva 13: Cinética de hs-cTn y Algoritmos -->
         <section class="slide">
             <h2 class="slide-title">Diagnóstico: Cinética de Biomarcadores</h2>
             <div class="slide-content">
@@ -656,21 +669,23 @@
                         <li><strong>Zona de Observación:</strong> Valores intermedios, requieren una tercera muestra (ej. 3h).</li>
                     </ul>
                 </div>
-                <div class="image-placeholder" id="img-cinetica">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama de flujo que muestre el algoritmo de 0/1 hora de la ESC, con las cajas de "Rule-Out", "Observar" y "Rule-In" y los valores de corte (estos varían según el ensayo específico).</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-cinetica')">
-                        <button onclick="applyImage('img-cinetica')">OK</button>
-                    </div>
+                
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen del algoritmo 0/1h dentro de url('...') -->
+                <div class="image-placeholder" id="img-cinetica"
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Algoritmo+ESC+0/1h');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Diagrama de flujo del algoritmo 0/1h de la ESC (Rule-Out, Observar, Rule-In).</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                
             </div>
             <footer>
                 <span class="bibliography">ESC Guidelines for ACS (2023). Eur Heart J. 2023;44(38):3720-3826.</span>
-                <span id="slide-counter">14 / 30</span>
+                <span id="slide-counter">13 / 29</span>
             </footer>
         </section>
         
-        <!-- Diapositiva 15: CK-MB y Otros Estudios -->
+        <!-- Diapositiva 14: CK-MB y Otros Estudios -->
         <section class="slide">
             <h2 class="slide-title">Diagnóstico: CK-MB y Otros Estudios</h2>
             <div class="slide-content">
@@ -691,21 +706,23 @@
                         <li><strong>Perfil de Lípidos:</strong> Tomar al ingreso (se alteran post-IAM).</li>
                     </ul>
                 </div>
-                <div class="image-placeholder" id="img-ckmb">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un gráfico de cinética comparando la curva de hs-cTn (larga) con la curva de CK-MB (corta), ilustrando por qué CK-MB es útil para el reinfarto.</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-ckmb')">
-                        <button onclick="applyImage('img-ckmb')">OK</button>
-                    </div>
+                
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen de cinética comparativa dentro de url('...') -->
+                <div class="image-placeholder" id="img-ckmb"
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Cinética+hs-cTn+vs+CK-MB');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Gráfico de cinética comparando la curva larga de hs-cTn con la curva corta de CK-MB (para ilustrar uso en re-infarto).</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21</span>
-                <span id="slide-counter">15 / 30</span>
+                <span id="slide-counter">14 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 16: Estudios de Imagen -->
+        <!-- Diapositiva 15: Estudios de Imagen -->
         <section class="slide">
             <h2 class="slide-title">Diagnóstico: Modalidades de Imagen</h2>
             <div class="slide-content">
@@ -730,11 +747,11 @@
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">16 / 30</span>
+                <span id="slide-counter">15 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 17: Diagnóstico Diferencial -->
+        <!-- Diapositiva 16: Diagnóstico Diferencial -->
         <section class="slide">
             <h2 class="slide-title">Diagnóstico Diferencial del Dolor Torácico</h2>
             <div class="slide-content">
@@ -749,21 +766,23 @@
                     </ul>
                     <p class="text-xl mt-4"><strong>Causas no letales comunes:</strong> Costocondritis, espasmo esofágico, ERGE, crisis de ansiedad.</p>
                 </div>
-                <div class="image-placeholder" id="img-dx-diff">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Una AngioTAC que muestre un flap de disección aórtica o una TEP masiva. O un EKG de pericarditis (elevación difusa cóncava).</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-dx-diff')">
-                        <button onclick="applyImage('img-dx-diff')">OK</button>
-                    </div>
+                
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen de Dx Diferencial dentro de url('...') -->
+                <div class="image-placeholder" id="img-dx-diff"
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Imagen+de+TEP+o+Disección+Aórtica');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> AngioTAC mostrando una TEP masiva o un flap de disección aórtica. O un EKG de pericarditis.</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21</span>
-                <span id="slide-counter">17 / 30</span>
+                <span id="slide-counter">16 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 18: Manejo IAMCEST -->
+        <!-- Diapositiva 17: Manejo IAMCEST -->
         <section class="slide">
             <h2 class="slide-title">Manejo: Infarto con Elevación del ST (IAMCEST)</h2>
             <div class="slide-content full-width">
@@ -776,11 +795,11 @@
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">18 / 30</span>
+                <span id="slide-counter">17 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 19: Estrategia de Reperfusión IAMCEST -->
+        <!-- Diapositiva 18: Estrategia de Reperfusión IAMCEST -->
         <section class="slide">
             <h2 class="slide-title">IAMCEST: Estrategia de Reperfusión y Tiempos</h2>
             <div class="slide-content">
@@ -804,21 +823,23 @@
                         <li><strong>Estrategia Farmacoinvasiva:</strong> <strong>TODOS</strong> los pacientes deben ser trasladados a un centro con ICP post-fibrinólisis (para angiografía de rutina 2-24h después, o de rescate si la lisis falla).</li>
                     </ul>
                 </div>
-                <div class="image-placeholder" id="img-flowchart">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un diagrama de flujo (flowchart) que muestre la decisión: "Diagnóstico IAMCEST" -> "¿Centro con ICP?" -> Tiempos de traslado -> "ICP Primaria" vs "Fibrinólisis".</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-flowchart')">
-                        <button onclick="applyImage('img-flowchart')">OK</button>
-                    </div>
+                
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen del flowchart de reperfusión dentro de url('...') -->
+                <div class="image-placeholder" id="img-flowchart"
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Algoritmo+IAMCEST+(ICP+vs+Fibrinólisis)');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Diagrama de flujo (flowchart) que muestre la decisión: "Diagnóstico IAMCEST" -> Tiempos de traslado -> "ICP Primaria" vs "Fibrinólisis".</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">19 / 30</span>
+                <span id="slide-counter">18 / 29</span>
             </footer>
         </section>
         
-        <!-- Diapositiva 20: Código Infarto -->
+        <!-- Diapositiva 19: Código Infarto -->
         <section class="slide">
             <h2 class="slide-title">IAMCEST: "Código Infarto" (GPC México)</h2>
             <div class="slide-content">
@@ -834,21 +855,23 @@
                         <li>Establecer rutas de traslado claras desde hospitales sin ICP a hospitales con ICP.</li>
                     </ul>
                 </div>
-                 <div class="image-placeholder" id="img-codigo">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Un mapa o diagrama logístico que muestre una ambulancia haciendo EKG, llamando a un centro de ICP y yendo directamente (bypass de urgencias).</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-codigo')">
-                        <button onclick="applyImage('img-codigo')">OK</button>
-                    </div>
+                 
+                 <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen del Código Infarto dentro de url('...') -->
+                <div class="image-placeholder" id="img-codigo"
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Diagrama+Logístico+Código+Infarto');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Mapa o diagrama logístico que muestre una ambulancia haciendo EKG, llamando a un centro de ICP y yendo directamente.</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                 
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 (Énfasis en la implementación logística)</span>
-                <span id="slide-counter">20 / 30</span>
+                <span id="slide-counter">19 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 21: IAMCEST - Farmacoterapia Aguda (DAPT) -->
+        <!-- Diapositiva 20: IAMCEST - Farmacoterapia Aguda (DAPT) -->
         <section class="slide">
             <h2 class="slide-title">IAMCEST: Farmacoterapia Aguda (DAPT)</h2>
             <div class="slide-content full-width">
@@ -876,11 +899,11 @@
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">21 / 30</span>
+                <span id="slide-counter">20 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 22: IAMCEST - Farmacoterapia (Anticoag. y Adyuvante) -->
+        <!-- Diapositiva 21: IAMCEST - Farmacoterapia (Anticoag. y Adyuvante) -->
         <section class="slide">
             <h2 class="slide-title">IAMCEST: Farmacoterapia (Anticoagulación y Adyuvante)</h2>
             <div class="slide-content">
@@ -896,20 +919,22 @@
                      <ul>
                         <li><strong>Betabloqueantes (Orales):</strong> Iniciar si está estable (sin IC, bajo gasto, hipotensión). Reducen demanda de $O_2$ y arritmias.</li>
                         <li><strong>Estatinas de Alta Intensidad:</strong> (Atorvastatina 80 mg o Rosuvastatina 20-40 mg). Iniciar lo antes posible (efectos pleiotrópicos).</li>
-                        <li><strong>IECA / ARA-II:</strong> Iniciar en todos, especialmente si hay FEVI $\leq 40\%$, IC, HTA, DM o IAM anterior. Previenen remodelado ventricular.</li>
+                        <!-- CORRECCIÓN DE SÍMBOLO: '$\leq' cambiado a '≤' -->
+                        <li><strong>IECA / ARA-II:</strong> Iniciar en todos, especialmente si hay FEVI ≤ 40%, IC, HTA, DM o IAM anterior. Previenen remodelado ventricular.</li>
                         <li><strong>Nitroglicerina:</strong> Para dolor isquémico persistente o HTA. (SL o IV).
-                             <ul><li><strong>Contraindicada:</strong> Hipotensión ($PAS < 90$), bradicardia, o sospecha de infarto de VD.</li></ul>
+                             <!-- CORRECCIÓN DE SÍMBOLO: '($PAS < 90$)' cambiado a '(PAS < 90)' -->
+                             <ul><li><strong>Contraindicada:</strong> Hipotensión (PAS < 90 mmHg), bradicardia, o sospecha de infarto de VD.</li></ul>
                         </li>
                     </ul>
                 </div>
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">22 / 30</span>
+                <span id="slide-counter">21 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 23: Manejo SCASEST -->
+        <!-- Diapositiva 22: Manejo SCASEST -->
         <section class="slide">
             <h2 class="slide-title">Manejo: Síndrome Coronario Agudo Sin Elevación del ST (SCASEST)</h2>
             <div class="slide-content full-width">
@@ -922,11 +947,11 @@
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">23 / 30</span>
+                <span id="slide-counter">22 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 24: SCASEST - Estratificación de Riesgo -->
+        <!-- Diapositiva 23: SCASEST - Estratificación de Riesgo -->
         <section class="slide">
             <h2 class="slide-title">SCASEST: Estratificación de Riesgo y Tiempos</h2>
             <div class="slide-content">
@@ -961,21 +986,23 @@
                         </li>
                     </ul>
                 </div>
-                <div class="image-placeholder" id="img-grace">
-                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Una captura de pantalla de la calculadora GRACE o un diagrama de flujo simple que muestre los 3 niveles de riesgo y sus tiempos de acción.</p>
-                    <div class="input-group">
-                        <input type="text" placeholder="Pega la URL de la imagen aquí" onkeydown="handleImageInput(event, 'img-grace')">
-                        <button onclick="applyImage('img-grace')">OK</button>
-                    </div>
+                
+                <!-- ===== INICIO ZONA DE EDICIÓN DE IMAGEN ===== -->
+                <!-- Pega la URL de la imagen del GRACE score dentro de url('...') -->
+                <div class="image-placeholder" id="img-grace"
+                     style="background-image: url('https://placehold.co/600x400/1e3a5f/e6f1ff?text=Calculadora+GRACE+Score');">
+                    <p class="suggestion"><strong>Sugerencia de Imagen:</strong> Captura de la calculadora GRACE o diagrama de flujo de los 3 niveles de riesgo y sus tiempos.</p>
                 </div>
+                <!-- ===== FIN ZONA DE EDICIÓN DE IMAGEN ===== -->
+                
             </div>
             <footer>
                 <span class="bibliography">ESC Guidelines for ACS (2023). Eur Heart J. 2023;44(38):3720-3826.</span>
-                <span id="slide-counter">24 / 30</span>
+                <span id="slide-counter">23 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 25: SCASEST - Terapia Antitrombótica -->
+        <!-- Diapositiva 24: SCASEST - Terapia Antitrombótica -->
         <section class="slide">
             <h2 class="slide-title">SCASEST: Terapia Antitrombótica</h2>
             <div class="slide-content full-width">
@@ -1003,11 +1030,11 @@
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">25 / 30</span>
+                <span id="slide-counter">24 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 26: Comparativa de Guías -->
+        <!-- Diapositiva 25: Comparativa de Guías -->
         <section class="slide">
             <h2 class="slide-title">Comparativa de Guías: GPC México vs. Internacionales</h2>
             <div class="slide-content">
@@ -1030,7 +1057,7 @@
                         <li>Estandariza los algoritmos <strong>0/1h y 0/2h</strong> como Clase I.</li>
                         <li>Dos cambios mayores muy debatidos:
                             <ol class="list-decimal pl-6 mt-2">
-                                <li>Preferencia de Prasugrel sobre Ticagrelor en ICP (IAMCEST y SCASEST).</li>
+                                <li>Preferencia de Prasugrel sobre Ticagrelor en ICP.</li>
                                 <li>Recomendación <strong>EN CONTRA</strong> del pre-tratamiento rutinario con P2Y12 en SCASEST.</li>
                             </ol>
                         </li>
@@ -1040,11 +1067,11 @@
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">26 / 30</span>
+                <span id="slide-counter">25 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 27: Diferencia Clave 1: Elección de P2Y12 -->
+        <!-- Diapositiva 26: Diferencia Clave 1: Elección de P2Y12 -->
         <section class="slide">
             <h2 class="slide-title">Diferencia Clave 1: Elección del P2Y12 (Post-ICP)</h2>
             <div class="slide-content">
@@ -1063,11 +1090,11 @@
             </div>
             <footer>
                 <span class="bibliography">Schüpke S, et al. (ISAR-REACT 5). N Engl J Med. 2019;381(16):1524-1534. | ESC Guidelines (2023)</span>
-                <span id="slide-counter">27 / 30</span>
+                <span id="slide-counter">26 / 29</span>
             </footer>
         </section>
         
-        <!-- Diapositiva 28: Diferencia Clave 2: Pre-tratamiento SCASEST -->
+        <!-- Diapositiva 27: Diferencia Clave 2: Pre-tratamiento SCASEST -->
         <section class="slide">
             <h2 class="slide-title">Diferencia Clave 2: "Pre-Tratamiento" en SCASEST</h2>
             <div class="slide-content">
@@ -1090,11 +1117,11 @@
             </div>
             <footer>
                 <span class="bibliography">ESC Guidelines for ACS (2023). Eur Heart J. 2023;44(38):3720-3826.</span>
-                <span id="slide-counter">28 / 30</span>
+                <span id="slide-counter">27 / 29</span>
             </footer>
         </section>
 
-        <!-- Diapositiva 29: Conclusiones -->
+        <!-- Diapositiva 28: Conclusiones -->
         <section class="slide">
             <h2 class="slide-title">Conclusiones y Puntos Clave</h2>
             <div class="slide-content full-width">
@@ -1110,11 +1137,11 @@
             </div>
             <footer>
                 <span class="bibliography">GPC IMSS-357-21 | ESC Guidelines for ACS (2023)</span>
-                <span id="slide-counter">29 / 30</span>
+                <span id="slide-counter">28 / 29</span>
             </footer>
         </section>
         
-        <!-- Diapositiva 30: Preguntas -->
+        <!-- Diapositiva 29: Preguntas -->
         <section class="slide title-slide">
             <div>
                 <h1 class="main-title">Gracias.</h1>
@@ -1126,7 +1153,7 @@
             </div>
             <footer>
                 <span class="bibliography"></span>
-                <span id="slide-counter">30 / 30</span>
+                <span id="slide-counter">29 / 29</span>
             </footer>
         </section>
 
@@ -1182,36 +1209,6 @@
             });
         }
         
-        // --- Manejo de Imágenes ---
-        // Esta función se activa con la tecla "Enter"
-        function handleImageInput(event, elementId) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                applyImage(elementId);
-            }
-        }
-
-        // Esta función se activa con el botón "OK"
-        function applyImage(elementId) {
-            const placeholder = document.getElementById(elementId);
-            if (!placeholder) return;
-
-            const input = placeholder.querySelector('input[type="text"]');
-            const url = input.value.trim();
-
-            if (url) {
-                // Validar que sea una URL (simple)
-                if (url.startsWith('http://') || url.startsWith('https://')) {
-                    placeholder.style.backgroundImage = `url('${url}')`;
-                    // Ocultar los controles de input
-                    placeholder.querySelector('.suggestion').style.display = 'none';
-                    placeholder.querySelector('.input-group').style.display = 'none';
-                } else {
-                    alert('Por favor, introduce una URL válida (que comience con http:// o https://)');
-                }
-            }
-        }
-
         // Inicializar contadores al cargar
         updateCounters();
     </script>
